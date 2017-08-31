@@ -11,18 +11,18 @@ import java.util.concurrent.locks.Lock;
 public class AccountLockTest {
 
     public static void main(String[] args) {
-        for (int i = 0; i < 8; i++) {
+        for (int i = 0; i < 100; i++) {
             Thread thread = new Thread(new Runnable() {
                 @Override
                 public void run() {
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
-                            for (int j = 0; j < 3; j++) {
+                            for (int j = 0; j < 100; j++) {
                                 Lock lock = AccountLock.lockMember(j);
                                 try {
                                     lock.lock();
-                                    TimeUnit.SECONDS.sleep((int)(Math.random()*6));
+                                    TimeUnit.SECONDS.sleep((int)(Math.random()*10));
                                 } catch (InterruptedException e) {
                                     System.out.println(e.toString());
                                 }finally {
@@ -36,11 +36,11 @@ public class AccountLockTest {
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
-                            for (int j = 0; j < 3; j++) {
+                            for (int j = 0; j < 100; j++) {
                                 Lock lock = AccountLock.lockProduct(j);
                                 try {
                                     lock.lock();
-                                    TimeUnit.SECONDS.sleep((int)(Math.random()*6));
+                                    TimeUnit.SECONDS.sleep((int)(Math.random()*10));
                                 } catch (InterruptedException e) {
                                     System.out.println(e.toString());
                                 }finally {
@@ -55,18 +55,18 @@ public class AccountLockTest {
             thread.start();
         }
 
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 100; i++) {
             Thread thread = new Thread(new Runnable() {
                 @Override
                 public void run() {
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
-                            for (int j = 0; j < 3; j++) {
+                            for (int j = 0; j < 100; j++) {
                                 Lock lock = AccountLock.lockMember(j);
                                 try {
                                     lock.lock();
-                                    TimeUnit.SECONDS.sleep((int)(Math.random()*6));
+                                    TimeUnit.SECONDS.sleep((int)(Math.random()*10));
                                 } catch (InterruptedException e) {
                                     System.out.println(e.toString());
                                 }finally {
@@ -79,11 +79,11 @@ public class AccountLockTest {
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
-                            for (int j = 0; j < 3; j++) {
+                            for (int j = 0; j < 100; j++) {
                                 Lock lock = AccountLock.lockProduct(j);
                                 try {
                                     lock.lock();
-                                    TimeUnit.SECONDS.sleep((int)(Math.random()*6));
+                                    TimeUnit.SECONDS.sleep((int)(Math.random()*10));
                                 } catch (InterruptedException e) {
                                     System.out.println(e.toString());
                                 }finally {
